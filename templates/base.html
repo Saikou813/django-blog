@@ -1,4 +1,5 @@
 {% load static %}
+{% url 'home' as home_url %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,14 +17,14 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
         <div class="container-fluid">
-            <a class="navbar-brand" href="/">CodeStar Blog</a>
+            <a class="navbar-brand" href="{% url 'home' %}">CodeStar Blog</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="/">Home</a>
+                        <a class="nav-link {% if request.path == home_url %}active{% endif %}" href="{% url 'home' %}">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/admin/">Admin</a>
@@ -44,7 +45,9 @@
     <!-- Footer -->
     <footer class="bg-dark text-white text-center py-4 mt-5">
         <div class="container">
-            <p>&copy; 2026 CodeStar Blog. All rights reserved.</p>
+            {% block copyright %}
+                <p>&copy; 2026 CodeStar Blog. All rights reserved.</p>
+            {% endblock copyright %}
         </div>
     </footer>
 
