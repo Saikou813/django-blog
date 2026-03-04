@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8">
+            <article>
+                <h1 class="card-title">{{ post.title }}</h1>
+                <p class="text-muted">
+                    By {{ post.author }} | Created on {{ post.created_on|date:"F j, Y" }}
+                </p>
+                <hr>
+                <img src="{% static 'images/default.jpg' %}" alt="Default post image" class="img-fluid mb-4">
+                <div class="post-content">
+                    {{ post.content|safe }}
+                </div>
+                <hr>
+                <a href="{% url 'home' %}" class="btn btn-primary">Back to Blog</a>
+            </article>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
